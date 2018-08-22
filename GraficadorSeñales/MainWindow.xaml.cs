@@ -23,6 +23,21 @@ namespace GraficadorSeñales
         public MainWindow()
         {
             InitializeComponent();
+            plnGrafica.Points.Add(new Point(50, 10));
+            plnGrafica.Points.Add(new Point(100, 50));
+            plnGrafica.Points.Add(new Point(150, 50));
+            plnGrafica.Points.Add(new Point(200, 30));
+            plnGrafica.Points.Add(new Point(250, 10));
+            plnGrafica.Points.Add(new Point(300, 25));
+            plnGrafica.Points.Add(new Point(350, 55));
+            plnGrafica.Points.Add(new Point(400, 11));
+            plnGrafica.Points.Add(new Point(450, 11));
+            plnGrafica.Points.Add(new Point(550, 11));
+            plnGrafica.Points.Add(new Point(650, 11));
+            plnGrafica.Points.Add(new Point(750, 11));
+            plnGrafica.Points.Add(new Point(850, 11));
+            plnGrafica.Points.Add(new Point(1050, 11));
+
         }
     }
 }

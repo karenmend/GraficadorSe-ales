@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Amplitud"/><Run Text=":"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" Text="Amplitud:" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="10,35,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,69,0,0" TextWrapping="Wrap" Text="Fase:" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="10,90,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
@@ -15,12 +15,15 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="10,146,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="173,14,0,0" TextWrapping="Wrap" Text="Tiempo inicial:" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="173,35,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="173,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Tiempo final:"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="173,69,0,0" TextWrapping="Wrap"  Text="Tiempo final:" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="173,90,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="173,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.542,-0.771"><Run Text="Frecuencia"/><Run Text=" de muestreo"/><Run Text=":"/></TextBlock>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="173,146,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="173,146,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="120"/>
         <Button Content="Graficar" HorizontalAlignment="Left" Margin="333,35,0,0" VerticalAlignment="Top" Width="75" IsCancel="True"/>
-        <ScrollViewer HorizontalAlignment="Left" Height="222" Margin="10,187,0,0" VerticalAlignment="Top" Width="708"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="222" Margin="10,187,0,0" VerticalAlignment="Top" Width="772" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
+            <Polyline Stroke="Black" StrokeThickness="2" Name="plnGrafica"/>
+
+        </ScrollViewer>
 
     </Grid>
 </Window>
