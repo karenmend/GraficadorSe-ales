@@ -13,14 +13,20 @@ namespace GraficadorSeñales
         public double Amplitud { get; set; }
         public double Fase { get; set; }
         public double Frecuencia { get; set; }
+        public List<Muestra> Muestras { get; set; }
 
+        public double AmplitudMaxima { get; set; }
+
+        
         //Valores Arbitrarios
         public SeñalSenoidal()
         {
             Amplitud = 1.0;
             Fase = 0.0;
             Frecuencia = 1.0;
-
+            Muestras = new List<Muestra>();
+            AmplitudMaxima = 0.0; //el valor maxima que va a reflejar en todos los instantes
+            //La amplitud maxima va a definir el tamaño del scrollviewer
         }
 
         //Crear un contructor que lo obligue a establecer las variables.

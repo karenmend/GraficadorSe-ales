@@ -37,15 +37,33 @@ namespace GraficadorSeñales
             double tiempoFinal = double.Parse(txtTiempoFinal.Text);
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
 
+
             SeñalSenoidal señal = new SeñalSenoidal(amplitud, fase, frecuencia);
 
             double periodoMuestreo = 1 / frecuenciaMuestreo;
             plnGrafica.Points.Clear();
             for(double i = tiempoInicial; i <=  tiempoFinal; i += periodoMuestreo)
             {
-                plnGrafica.Points.Add(new Point(i * scrContenedor.Width, 
-                    señal.evaluar(i) * ((scrContenedor.Height / 2.0) - 30) * -1 + (scrContenedor.Height / 2)));
+                //
+                double valorMuestra = señal.evaluar(i);
+                señal.Muestras.Add(new Muestra(i, valorMuestra));
+                if(Math.Abs(valorMuestra) > señal.AmplitudMaxima)
+                {
+                    señal.AmplitudMaxima = Math.Abs(valorMuestra);
+                }
+                //
 
+                //Recorrer una coleccion o arreglo, solo sirve cuando quieres recorrer todos los elementos.
+                //Por cada iteracion se guardara un elemento conforme a la coleccion. (FOREACH)
+                //Declarar la variable del tipo de dato que va recorrer
+                foreach (Muestra muestra in señal.Muestras)
+                {
+                    plnGrafica.Points.Add(new Point(muestra.X * scrContenedor.Width,
+                   muestra.Y * ((scrContenedor.Height / 2.0))  + (scrContenedor.Height / 2)));
+                }
+
+              
+               
             }
         }
     }
