@@ -22,15 +22,15 @@ namespace GraficadorSeñales
     {
         public MainWindow()
         {
-            
+
 
         }
-        
+
         private void btnGraficar_Click(object sender, RoutedEventArgs e)
         {
             //CASTING = Convertir entre tipos de datos.
             //CASTING
-            double amplitud = double.Parse(txtAmplitud.Text); 
+            double amplitud = double.Parse(txtAmplitud.Text);
             double fase = double.Parse(txtFase.Text);
             double frecuencia = double.Parse(txtFrecuencia.Text);
             double tiempoInicial = double.Parse(txtTiempoInicial.Text);
@@ -42,29 +42,62 @@ namespace GraficadorSeñales
 
             double periodoMuestreo = 1 / frecuenciaMuestreo;
             plnGrafica.Points.Clear();
-            for(double i = tiempoInicial; i <=  tiempoFinal; i += periodoMuestreo)
+            for (double i = tiempoInicial; i <= tiempoFinal; i += periodoMuestreo)
             {
                 //
                 double valorMuestra = señal.evaluar(i);
                 señal.Muestras.Add(new Muestra(i, valorMuestra));
-                if(Math.Abs(valorMuestra) > señal.AmplitudMaxima)
+                if (Math.Abs(valorMuestra) > señal.AmplitudMaxima)
                 {
                     señal.AmplitudMaxima = Math.Abs(valorMuestra);
                 }
                 //
-
+            }
                 //Recorrer una coleccion o arreglo, solo sirve cuando quieres recorrer todos los elementos.
                 //Por cada iteracion se guardara un elemento conforme a la coleccion. (FOREACH)
                 //Declarar la variable del tipo de dato que va recorrer
                 foreach (Muestra muestra in señal.Muestras)
                 {
                     plnGrafica.Points.Add(new Point(muestra.X * scrContenedor.Width,
-                   muestra.Y * ((scrContenedor.Height / 2.0))  + (scrContenedor.Height / 2)));
+                   muestra.Y * (((scrContenedor.Height / 2.0) - 30) * - 1) + (scrContenedor.Height / 2)));
                 }
 
-              
-               
+
+
+            
+        }
+
+        private void btnGrficarRampa_Click(object sender, RoutedEventArgs e)
+        {
+
+           
+            double tiempoInicial = double.Parse(txtTiempoInicial.Text);
+            double tiempoFinal = double.Parse(txtTiempoFinal.Text);
+            double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
+
+            
+            SeñalRampa señal = new SeñalRampa();
+
+            double periodoMuestreo = 1 / frecuenciaMuestreo;
+
+            plnGrafica.Points.Clear(); //borra los puntos
+
+            for (double i = tiempoInicial; i <= tiempoFinal; i += periodoMuestreo)
+            {
+
+                double valorMuestra = señal.evaluar(i);
+
+                señal.Muestras.Add(new Muestra(i, valorMuestra));
             }
+               
+                foreach (Muestra muestra in señal.Muestras)
+                {
+                    plnGrafica.Points.Add(new Point(muestra.X * scrContenedor.Width,
+                   muestra.Y * (((scrContenedor.Height / 2.0) -30) * -1) + (scrContenedor.Height / 2)));
+                }
+
+
+            
         }
     }
 }

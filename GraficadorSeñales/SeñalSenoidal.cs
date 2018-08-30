@@ -37,6 +37,7 @@ namespace GraficadorSeñales
             Amplitud = amplitud;
             Fase = fase;
             Frecuencia = frecuencia;
+            Muestras = new List<Muestra>();
 
         }
 
