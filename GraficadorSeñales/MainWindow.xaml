@@ -20,11 +20,14 @@
         <TextBlock HorizontalAlignment="Left" Margin="173,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.542,-0.771"><Run Text="Frecuencia"/><Run Text=" de muestreo"/><Run Text=":"/></TextBlock>
         <TextBox x:Name="txtFrecuenciaMuestreo" HorizontalAlignment="Left" Height="23" Margin="173,146,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnGraficar" Content="Graficar Señal Senoidal" HorizontalAlignment="Left" Margin="333,35,0,0" VerticalAlignment="Top" Width="233" IsCancel="True" Height="23" Click="btnGraficar_Click"/>
-        <ScrollViewer x:Name="scrContenedor" HorizontalAlignment="Left" Height="222" Margin="10,187,0,0" VerticalAlignment="Top" Width="772" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer x:Name="scrContenedor" HorizontalAlignment="Left" Height="222" Margin="84,187,0,0" VerticalAlignment="Top" Width="698" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
             <Polyline Stroke="Black" StrokeThickness="2" Name="plnGrafica"/>
 
         </ScrollViewer>
-        <Button x:Name="btnGrficarRampa" Content="Graficar Señal Rampa" HorizontalAlignment="Left" Margin="333,90,0,0" VerticalAlignment="Top" Width="233" Click="btnGrficarRampa_Click"/>
+        <Button x:Name="btnGrficarRampa" Content="Graficar Señal Rampa" HorizontalAlignment="Left" Margin="333,75,0,0" VerticalAlignment="Top" Width="233" Click="btnGrficarRampa_Click"/>
+        <TextBlock x:Name="lblAmplitudMaximaY" HorizontalAlignment="Left" Margin="10,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="lblAmplitudMazimaNegativaY" HorizontalAlignment="Left" Margin="10,379,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <TextBlock x:Name="lblAmplitudCero" HorizontalAlignment="Left" Margin="10,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"><Run Text="0"/><LineBreak/><Run/></TextBlock>
 
     </Grid>
 </Window>
