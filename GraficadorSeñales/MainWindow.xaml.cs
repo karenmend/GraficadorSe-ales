@@ -58,12 +58,26 @@ namespace GraficadorSeñales
                 //Declarar la variable del tipo de dato que va recorrer
                 foreach (Muestra muestra in señal.Muestras)
                 {
-                    plnGrafica.Points.Add(new Point(muestra.X * scrContenedor.Width,
+                    plnGrafica.Points.Add(new Point((muestra.X - tiempoInicial) * scrContenedor.Width,
                    (muestra.Y / señal.AmplitudMaxima) * (((scrContenedor.Height / 2.0) - 30) * - 1) + (scrContenedor.Height / 2))
                    );
                 }
-
-            // (muestra.Y / señal.AmplitudMaxima) escalo la muestra
+           
+            //EJE X
+            plnEjex.Points.Clear();
+            //Punto de Principio
+            plnEjex.Points.Add(new Point(0, (scrContenedor.Height / 2)));
+            //Punto del fin
+            plnEjex.Points.Add(new Point((tiempoFinal - tiempoInicial) * scrContenedor.Width, (scrContenedor.Height / 2)));
+            //
+        
+            //EJE Y
+            plnEjey.Points.Clear();
+            //Punto de Principio
+            plnEjey.Points.Add(new Point((0-tiempoInicial) * scrContenedor.Width,  señal.AmplitudMaxima * (((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
+            //Punto del fin
+            plnEjey.Points.Add(new Point((0-tiempoInicial) * scrContenedor.Width, -señal.AmplitudMaxima * (((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
+            //
 
             lblAmplitudMaximaY.Text = señal.AmplitudMaxima.ToString();
             lblAmplitudMazimaNegativaY.Text = "-" + señal.AmplitudMaxima.ToString();
