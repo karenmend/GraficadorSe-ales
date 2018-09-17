@@ -6,26 +6,23 @@ using System.Threading.Tasks;
 
 namespace GraficadorSeñales
 {
-    class SeñalSenoidal
-    {   //Enacapsulamiento = no exponer variables de manera publica solo hacerlo por medio de metodos.{get;set;}
-
-        //Atributos de clase
+    class SeñalSenoidal : Señal
+    {   
+        //Enacapsulamiento = no exponer variables de manera publica solo hacerlo por medio de metodos.{get;set;}
+        //Atributos de clase señal senoidal
         public double Amplitud { get; set; }
         public double Fase { get; set; }
         public double Frecuencia { get; set; }
-        public List<Muestra> Muestras { get; set; }
 
-        public double AmplitudMaxima { get; set; }
-
-        
-        //Valores Arbitrarios
         public SeñalSenoidal()
         {
             Amplitud = 1.0;
             Fase = 0.0;
             Frecuencia = 1.0;
             Muestras = new List<Muestra>();
-            AmplitudMaxima = 0.0; //el valor maxima que va a reflejar en todos los instantes
+            AmplitudMaxima = 0.0; 
+            
+            //El valor maxima que va a reflejar en todos los instantes
             //La amplitud maxima va a definir el tamaño del scrollviewer
         }
 
@@ -41,7 +38,7 @@ namespace GraficadorSeñales
 
         }
 
-        public double evaluar(double tiempo)
+        override public double evaluar(double tiempo)
         {
             double resultado;
             resultado = Amplitud * Math.Sin(((2 * Math.PI * Frecuencia) * tiempo) + Fase);

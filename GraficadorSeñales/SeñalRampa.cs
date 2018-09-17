@@ -6,21 +6,17 @@ using System.Threading.Tasks;
 
 namespace GraficadorSeñales
 {
-    class SeñalRampa
+    class SeñalRampa : Señal 
     {
         
-        public List<Muestra> Muestras { get; set; }
-
-
-
         public SeñalRampa()
         {  
             Muestras = new List<Muestra>();
-           
+            AmplitudMaxima = 0.0;
         }
 
 
-        public double evaluar(double tiempo)
+        override public double evaluar(double tiempo)
         {
             double resultado=0;
 

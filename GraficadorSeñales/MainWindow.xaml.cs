@@ -29,7 +29,6 @@ namespace GraficadorSeñales
         private void btnGraficar_Click(object sender, RoutedEventArgs e)
         {
             //CASTING = Convertir entre tipos de datos.
-            //CASTING
             double amplitud = double.Parse(txtAmplitud.Text);
             double fase = double.Parse(txtFase.Text);
             double frecuencia = double.Parse(txtFrecuencia.Text);
@@ -38,30 +37,44 @@ namespace GraficadorSeñales
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
 
 
-            SeñalSenoidal señal = new SeñalSenoidal(amplitud, fase, frecuencia);
-
-            double periodoMuestreo = 1 / frecuenciaMuestreo;
-            plnGrafica.Points.Clear();
-            for (double i = tiempoInicial; i <= tiempoFinal; i += periodoMuestreo)
+            Señal señal;
+            switch (cbTipoSeñal.SelectedIndex)
             {
-                //
-                double valorMuestra = señal.evaluar(i);
-                señal.Muestras.Add(new Muestra(i, valorMuestra));
-                if (Math.Abs(valorMuestra) > señal.AmplitudMaxima)
-                {
-                    señal.AmplitudMaxima = Math.Abs(valorMuestra);
-                }
-                //
+                //Senoidal
+                case 0:
+                    señal = new SeñalSenoidal(amplitud, fase, frecuencia);
+                    break;
+                //Rampa
+                case 1:
+                    señal = new SeñalRampa();
+                    break;
+                default:
+                    señal = null;
+                    break;
             }
+
+            //Establacer los valores que va usar la clase antes de que la llame.
+            señal.TiempoInicial = tiempoInicial;
+            señal.TiempoFinal = tiempoFinal;
+            señal.FrecuenciaMuestreo = frecuenciaMuestreo;
+            señal.construirSeñalDigital();
+
+            plnGrafica.Points.Clear();
+
+            
+            if (señal != null)
+            {
                 //Recorrer una coleccion o arreglo, solo sirve cuando quieres recorrer todos los elementos.
                 //Por cada iteracion se guardara un elemento conforme a la coleccion. (FOREACH)
                 //Declarar la variable del tipo de dato que va recorrer
                 foreach (Muestra muestra in señal.Muestras)
                 {
                     plnGrafica.Points.Add(new Point((muestra.X - tiempoInicial) * scrContenedor.Width,
-                   (muestra.Y / señal.AmplitudMaxima) * (((scrContenedor.Height / 2.0) - 30) * - 1) + (scrContenedor.Height / 2))
-                   );
+                    (muestra.Y / señal.AmplitudMaxima) * (((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2))
+                    );
                 }
+            }
+            
            
             //EJE X
             plnEjex.Points.Clear();
@@ -85,8 +98,6 @@ namespace GraficadorSeñales
 
         private void btnGrficarRampa_Click(object sender, RoutedEventArgs e)
         {
-
-           
             double tiempoInicial = double.Parse(txtTiempoInicial.Text);
             double tiempoFinal = double.Parse(txtTiempoFinal.Text);
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
