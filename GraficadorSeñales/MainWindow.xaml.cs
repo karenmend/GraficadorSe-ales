@@ -29,9 +29,8 @@ namespace GraficadorSeñales
         private void btnGraficar_Click(object sender, RoutedEventArgs e)
         {
             //CASTING = Convertir entre tipos de datos.
-            double amplitud = double.Parse(txtAmplitud.Text);
-            double fase = double.Parse(txtFase.Text);
-            double frecuencia = double.Parse(txtFrecuencia.Text);
+            
+
             double tiempoInicial = double.Parse(txtTiempoInicial.Text);
             double tiempoFinal = double.Parse(txtTiempoFinal.Text);
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
@@ -42,7 +41,11 @@ namespace GraficadorSeñales
             {
                 //Senoidal
                 case 0:
-                    señal = new SeñalSenoidal(amplitud, fase, frecuencia);
+                    /*double amplitud = double.Parse(txtAmplitud.Text);
+                        double fase = double.Parse(txtFase.Text);
+                        double frecuencia = double.Parse(txtFrecuencia.Text);
+                     */
+                    señal = new SeñalSenoidal(5, 0, 8);
                     break;
                 //Rampa
                 case 1:
@@ -125,6 +128,25 @@ namespace GraficadorSeñales
 
 
             
+        }
+
+        private void cbTipoSeñal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (panelConfiguracion != null)
+            {
+                panelConfiguracion.Children.Clear();
+                switch (cbTipoSeñal.SelectedIndex)
+                {
+                    case 0: //Senoidal
+
+                        panelConfiguracion.Children.Add(new ConfiguracionSeñalSenoidal());
+                        break;
+                    case 1:
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
