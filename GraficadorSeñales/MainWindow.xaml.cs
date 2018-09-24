@@ -28,28 +28,34 @@ namespace GraficadorSeñales
 
         private void btnGraficar_Click(object sender, RoutedEventArgs e)
         {
-            //CASTING = Convertir entre tipos de datos.
+       
             
-
             double tiempoInicial = double.Parse(txtTiempoInicial.Text);
             double tiempoFinal = double.Parse(txtTiempoFinal.Text);
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
-
-
+            
             Señal señal;
             switch (cbTipoSeñal.SelectedIndex)
             {
                 //Senoidal
                 case 0:
-                    /*double amplitud = double.Parse(txtAmplitud.Text);
-                        double fase = double.Parse(txtFase.Text);
-                        double frecuencia = double.Parse(txtFrecuencia.Text);
-                     */
-                    señal = new SeñalSenoidal(5, 0, 8);
+                    double amplitud = double.Parse(
+                        ((ConfiguracionSeñalSenoidal)panelConfiguracion.Children[0]).txtAmplitud.Text);
+                    double fase = double.Parse(
+                        ((ConfiguracionSeñalSenoidal)panelConfiguracion.Children[0]).txtFase.Text);
+                    double frecuencia = double.Parse(
+                        ((ConfiguracionSeñalSenoidal)panelConfiguracion.Children[0]).txtFrecuencia.Text);
+                    señal = new SeñalSenoidal(amplitud, fase, frecuencia);
+
                     break;
                 //Rampa
                 case 1:
                     señal = new SeñalRampa();
+                    break;
+                case 2:
+                   double alpha = double.Parse(
+                        ((ConfiguracionSeñalExponencial)panelConfiguracion.Children[0]).txtAlpha.Text);
+                    señal = new SeñalExponencial(alpha);
                     break;
                 default:
                     señal = null;
@@ -138,10 +144,12 @@ namespace GraficadorSeñales
                 switch (cbTipoSeñal.SelectedIndex)
                 {
                     case 0: //Senoidal
-
                         panelConfiguracion.Children.Add(new ConfiguracionSeñalSenoidal());
                         break;
                     case 1:
+                        break;
+                    case 2:
+                        panelConfiguracion.Children.Add(new ConfiguracionSeñalExponencial());
                         break;
                     default:
                         break;
