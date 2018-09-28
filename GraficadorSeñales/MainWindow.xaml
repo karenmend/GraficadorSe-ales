@@ -25,12 +25,18 @@
         <TextBlock x:Name="lblAmplitudMazimaNegativaY" HorizontalAlignment="Left" Margin="10,379,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <TextBlock x:Name="lblAmplitudCero" HorizontalAlignment="Left" Margin="10,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"><Run Text="0"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="542,69,0,0" TextWrapping="Wrap" Text="Tipo de Señal:" VerticalAlignment="Top"/>
-        <StackPanel x:Name="panelConfiguracion" HorizontalAlignment="Left" Height="172" Margin="14,6,0,0" VerticalAlignment="Top" Width="136"/>
+        <StackPanel x:Name="panelConfiguracion" HorizontalAlignment="Left" Height="172" Margin="14,6,0,0" VerticalAlignment="Top" Width="198"/>
         <ComboBox x:Name="cbTipoSeñal" SelectedIndex="0" HorizontalAlignment="Left" Margin="542,96,0,0" VerticalAlignment="Top" Width="233" SelectionChanged="cbTipoSeñal_SelectionChanged">
             <ComboBoxItem>Señal Senoidal</ComboBoxItem>
             <ComboBoxItem>Señal Rampa</ComboBoxItem>
             <ComboBoxItem>Señal Exponencial</ComboBoxItem>
         </ComboBox>
-        
+        <TextBlock HorizontalAlignment="Left" Margin="232,14,0,0" TextWrapping="Wrap" Text="Escala de Amplitud:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtfactorEscalaAmplitud" HorizontalAlignment="Left" Height="23" Margin="232,35,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" IsEnabled="{Binding ElementName=checkboxEscalaAmplitud, Path=IsChecked}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="232,69,0,0" TextWrapping="Wrap" Text="Desplazamiento en Y:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDesplazamientoEnY" HorizontalAlignment="Left" Height="23" Margin="232,90,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding ElementName=checkboxDesplazamientoY, Path=IsChecked}" />
+        <CheckBox  HorizontalAlignment="Left" Margin="357,43,0,0" VerticalAlignment="Top" Name="checkboxEscalaAmplitud" IsChecked="False"/>
+        <CheckBox  HorizontalAlignment="Left" Margin="357,96,0,0" VerticalAlignment="Top" Name="checkboxDesplazamientoY" IsChecked="False"/>
+
     </Grid>
 </Window>

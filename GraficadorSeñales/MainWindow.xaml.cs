@@ -28,12 +28,12 @@ namespace GraficadorSeñales
 
         private void btnGraficar_Click(object sender, RoutedEventArgs e)
         {
-       
-            
+
+
             double tiempoInicial = double.Parse(txtTiempoInicial.Text);
             double tiempoFinal = double.Parse(txtTiempoFinal.Text);
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
-            
+
             Señal señal;
             switch (cbTipoSeñal.SelectedIndex)
             {
@@ -53,8 +53,8 @@ namespace GraficadorSeñales
                     señal = new SeñalRampa();
                     break;
                 case 2:
-                   double alpha = double.Parse(
-                        ((ConfiguracionSeñalExponencial)panelConfiguracion.Children[0]).txtAlpha.Text);
+                    double alpha = double.Parse(
+                         ((ConfiguracionSeñalExponencial)panelConfiguracion.Children[0]).txtAlpha.Text);
                     señal = new SeñalExponencial(alpha);
                     break;
                 default:
@@ -70,7 +70,41 @@ namespace GraficadorSeñales
 
             plnGrafica.Points.Clear();
 
+
+
+
+            //Escalar
+            double factorEscala = double.Parse(txtfactorEscalaAmplitud.Text);
+            if (checkboxEscalaAmplitud.IsChecked == true)
+            {
+                
+                señal.escalar(factorEscala);
+
+            }
+            else
+            {
+                factorEscala = 1;
+                señal.escalar(factorEscala);
+            }
+
+            //Desplazar
+            double desplazamientoValor = double.Parse(txtDesplazamientoEnY.Text);
+            if(checkboxDesplazamientoY.IsChecked == true)
+            {
+                señal.desplazar(desplazamientoValor);
+            }
+           else
+            {
+                desplazamientoValor = 0;
+                señal.desplazar(desplazamientoValor);
+
+            }
+
+            //Amplitud
+            señal.actualizarAmplitudMaxima();
+
             
+
             if (señal != null)
             {
                 //Recorrer una coleccion o arreglo, solo sirve cuando quieres recorrer todos los elementos.
@@ -156,5 +190,7 @@ namespace GraficadorSeñales
                 }
             }
         }
+
+       
     }
 }
