@@ -37,6 +37,9 @@
         <TextBox x:Name="txtDesplazamientoEnY" HorizontalAlignment="Left" Height="23" Margin="232,90,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding ElementName=checkboxDesplazamientoY, Path=IsChecked}" />
         <CheckBox  HorizontalAlignment="Left" Margin="357,43,0,0" VerticalAlignment="Top" Name="checkboxEscalaAmplitud" IsChecked="False"/>
         <CheckBox  HorizontalAlignment="Left" Margin="357,96,0,0" VerticalAlignment="Top" Name="checkboxDesplazamientoY" IsChecked="False"/>
+        <TextBlock HorizontalAlignment="Left" Margin="232,127,0,0" TextWrapping="Wrap" Text="Parámetros:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtUmbral" HorizontalAlignment="Left" Height="23" Margin="232,148,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding  ElementName=checkboxUmbral, Path=IsChecked}" />
+        <CheckBox  HorizontalAlignment="Left" Margin="357,154,0,0" VerticalAlignment="Top" x:Name="checkboxUmbral" IsChecked="False"/>
 
     </Grid>
 </Window>

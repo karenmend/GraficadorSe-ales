@@ -60,6 +60,22 @@ namespace GraficadorSeñales
                 }
             }
         }
+
+        public void truncar(double n)
+        {
+            foreach(Muestra muestra in Muestras)
+            {
+                if(Math.Abs(muestra.Y) > n )
+                {
+                    muestra.Y = n;
+
+                }
+                else if(Math.Abs(muestra.Y) < -n)
+                {
+                    muestra.Y = -n;
+                }
+            }
+        }
         
     }
 }

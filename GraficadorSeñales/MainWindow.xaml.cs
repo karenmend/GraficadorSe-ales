@@ -81,7 +81,7 @@ namespace GraficadorSeñales
                 señal.escalar(factorEscala);
 
             }
-            else
+            else if (checkboxEscalaAmplitud.IsChecked == false)
             {
                 factorEscala = 1;
                 señal.escalar(factorEscala);
@@ -93,13 +93,20 @@ namespace GraficadorSeñales
             {
                 señal.desplazar(desplazamientoValor);
             }
-           else
+           else if (checkboxDesplazamientoY.IsChecked == false)
             {
                 desplazamientoValor = 0;
                 señal.desplazar(desplazamientoValor);
 
             }
 
+            //Truncar
+            if(checkboxUmbral.IsChecked == true)
+            {
+                double umbralValor = double.Parse(txtUmbral.Text);
+                señal.truncar(umbralValor);
+            }
+            
             //Amplitud
             señal.actualizarAmplitudMaxima();
 
