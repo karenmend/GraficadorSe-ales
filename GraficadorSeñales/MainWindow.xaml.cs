@@ -142,8 +142,8 @@ namespace GraficadorSeñales
             plnEjey.Points.Add(new Point((0-tiempoInicial) * scrContenedor.Width, -señal.AmplitudMaxima * (((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
             //
 
-            lblAmplitudMaximaY.Text = señal.AmplitudMaxima.ToString();
-            lblAmplitudMazimaNegativaY.Text = "-" + señal.AmplitudMaxima.ToString();
+            lblAmplitudMaximaY.Text = señal.AmplitudMaxima.ToString("F");
+            lblAmplitudMazimaNegativaY.Text = "-" + señal.AmplitudMaxima.ToString("F");
         }
 
         private void btnGrficarRampa_Click(object sender, RoutedEventArgs e)
@@ -198,6 +198,9 @@ namespace GraficadorSeñales
             }
         }
 
-       
+        private void cbTipoSeñal_Segunda_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
