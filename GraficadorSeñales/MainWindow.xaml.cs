@@ -15,14 +15,16 @@ using System.Windows.Shapes;
 
 namespace GraficadorSeñales
 {
+   
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        double amplitudMaxima;
         public MainWindow()
         {
-
+       
 
         }
 
@@ -80,7 +82,7 @@ namespace GraficadorSeñales
                     break;
                 //Rampa
                 case 1:
-                    segundaSeñal = new SeñalSenoidal();
+                    segundaSeñal = new SeñalRampa();
                     break;
                 case 2:
                     double alpha = double.Parse(
@@ -106,7 +108,7 @@ namespace GraficadorSeñales
             señal.construirSeñalDigital();
             segundaSeñal.construirSeñalDigital();
             plnGrafica.Points.Clear();
-
+            plnGraficaDos.Points.Clear();
 
 
 
@@ -151,6 +153,7 @@ namespace GraficadorSeñales
             //Señal2
             //Señal senoidal
             double factorEscala2 = double.Parse(txtfactorEscalaAmplitud_SegundaSeñal.Text);
+
             if (checkboxEscalaAmplitud_SegundaSeñal.IsChecked == true)
             {
                 segundaSeñal.escalar(factorEscala2);
@@ -182,6 +185,12 @@ namespace GraficadorSeñales
             //Amplitud
             segundaSeñal.actualizarAmplitudMaxima();
 
+            amplitudMaxima = señal.AmplitudMaxima;
+            if(segundaSeñal.AmplitudMaxima > amplitudMaxima)
+            {
+                amplitudMaxima = segundaSeñal.AmplitudMaxima;
+            }
+
             if (señal != null)
             {
                 //Recorrer una coleccion o arreglo, solo sirve cuando quieres recorrer todos los elementos.
@@ -190,11 +199,26 @@ namespace GraficadorSeñales
                 foreach (Muestra muestra in señal.Muestras)
                 {
                     plnGrafica.Points.Add(new Point((muestra.X - tiempoInicial) * scrContenedor.Width,
-                    (muestra.Y / señal.AmplitudMaxima) * (((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2))
+                    (muestra.Y / amplitudMaxima) * (((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2))
                     );
                 }
+
             }
-            
+            if ( segundaSeñal != null)
+            {
+                //Recorrer una coleccion o arreglo, solo sirve cuando quieres recorrer todos los elementos.
+                //Por cada iteracion se guardara un elemento conforme a la coleccion. (FOREACH)
+                //Declarar la variable del tipo de dato que va recorrer
+                foreach (Muestra muestra in segundaSeñal.Muestras)
+                {
+                    plnGraficaDos.Points.Add(new Point((muestra.X - tiempoInicial) * scrContenedor.Width,
+                    (muestra.Y / amplitudMaxima) * (((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2))
+                    );
+                }
+
+            }
+            lblAmplitudMaximaY.Text = amplitudMaxima.ToString("F");
+            lblAmplitudMazimaNegativaY.Text = "-" + amplitudMaxima.ToString("F");
            
             //EJE X
             plnEjex.Points.Clear();
@@ -212,8 +236,7 @@ namespace GraficadorSeñales
             plnEjey.Points.Add(new Point((0-tiempoInicial) * scrContenedor.Width, -señal.AmplitudMaxima * (((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
             //
 
-            lblAmplitudMaximaY.Text = señal.AmplitudMaxima.ToString("F");
-            lblAmplitudMazimaNegativaY.Text = "-" + señal.AmplitudMaxima.ToString("F");
+           
         }
 
         private void btnGrficarRampa_Click(object sender, RoutedEventArgs e)
@@ -224,7 +247,7 @@ namespace GraficadorSeñales
 
             
             SeñalRampa señal = new SeñalRampa();
-
+            
             double periodoMuestreo = 1 / frecuenciaMuestreo;
 
             plnGrafica.Points.Clear(); //borra los puntos

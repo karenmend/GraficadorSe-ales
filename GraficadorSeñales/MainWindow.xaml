@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraficadorSeñales"
         mc:Ignorable="d"
-        Title="MainWindow" Height="557" Width="1034">
+        Title="MainWindow" Height="807.221" Width="1034">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="870,13,0,0" TextWrapping="Wrap" Text="Tiempo inicial:" VerticalAlignment="Top"/>
         <TextBox x:Name="txtTiempoInicial" HorizontalAlignment="Left" Height="23" Margin="870,34,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
@@ -17,6 +17,7 @@
         <ScrollViewer x:Name="scrContenedor" HorizontalAlignment="Left" Height="222" Margin="84,297,0,0" VerticalAlignment="Top" Width="932" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
             <Grid>
                 <Polyline Stroke="CornflowerBlue" StrokeThickness="2" Name="plnGrafica"/>
+                <Polyline Stroke="Salmon" StrokeThickness="2" Name="plnGraficaDos"/>
                 <Polyline Stroke="Black" StrokeThickness="0.5" Name="plnEjex"/>
                 <Polyline Stroke="Black" StrokeThickness="0.5" Name="plnEjey"/>
             </Grid>
@@ -56,6 +57,22 @@
         <TextBlock HorizontalAlignment="Left" Margin="686,127,0,0" TextWrapping="Wrap" Text="Truncar:" VerticalAlignment="Top"/>
         <TextBox x:Name="txtUmbral_SegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="686,148,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="102" IsEnabled="{Binding IsChecked, ElementName=checkboxUmbral}" />
         <CheckBox  HorizontalAlignment="Left" Margin="794,154,0,0" VerticalAlignment="Top" x:Name="checkboxUmbral_SegundaSeñal" IsChecked="False"/>
+        <ScrollViewer x:Name="scrContenedor_Resultado" HorizontalAlignment="Left" Height="222" Margin="84,550,0,0" VerticalAlignment="Top" Width="932" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
+            <Grid>
+                <Polyline Stroke="CornflowerBlue" StrokeThickness="2" x:Name="plnGrafica1"/>
+                <Polyline Stroke="Black" StrokeThickness="0.5" x:Name="plnEjexResultado"/>
+                <Polyline Stroke="Black" StrokeThickness="0.5" x:Name="plnEjeyResultado"/>
+            </Grid>
+        </ScrollViewer>
+        <TextBlock x:Name="lblAmplitudMaximaY_Copy" HorizontalAlignment="Left" Margin="10,550,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="lblAmplitudMazimaNegativaY_Copy" HorizontalAlignment="Left" Margin="10,742,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <TextBlock x:Name="lblAmplitudCero_Copy" HorizontalAlignment="Left" Margin="10,650,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="871,213,0,0" TextWrapping="Wrap" Text="Operacion:" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbTipoOperaacion" HorizontalAlignment="Left" Margin="871,234,0,0" VerticalAlignment="Top" Width="133">
+            <ComboBoxItem>Suma</ComboBoxItem>
+            <ComboBoxItem>Multiplicacion</ComboBoxItem>
+        </ComboBox> 
+        <Button x:Name="btnRealizarOperacion" Content="Realizar Operacion" HorizontalAlignment="Left" Margin="871,266,0,0" VerticalAlignment="Top" Width="133"/>
 
     </Grid>
 </Window>
