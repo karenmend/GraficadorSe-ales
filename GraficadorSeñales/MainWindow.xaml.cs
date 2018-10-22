@@ -21,7 +21,13 @@ namespace GraficadorSeñales
     /// </summary>
     public partial class MainWindow : Window
     {
+
         double amplitudMaxima;
+        Señal señal;
+        Señal segundaSeñal;
+        Señal señalResultado;
+
+        
         public MainWindow()
         {
        
@@ -36,8 +42,7 @@ namespace GraficadorSeñales
             double tiempoFinal = double.Parse(txtTiempoFinal.Text);
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
 
-            Señal señal;
-            Señal segundaSeñal;
+            
 
             switch (cbTipoSeñal.SelectedIndex)
             {
@@ -145,9 +150,7 @@ namespace GraficadorSeñales
                 double umbralValor = double.Parse(txtUmbral.Text);
                 señal.truncar(umbralValor);
             }
-            
-            //Amplitud
-            señal.actualizarAmplitudMaxima();
+         
 
 
             //Señal2
@@ -183,8 +186,9 @@ namespace GraficadorSeñales
             }
 
             //Amplitud
+            //Amplitud
+            señal.actualizarAmplitudMaxima();
             segundaSeñal.actualizarAmplitudMaxima();
-
             amplitudMaxima = señal.AmplitudMaxima;
             if(segundaSeñal.AmplitudMaxima > amplitudMaxima)
             {
@@ -307,6 +311,60 @@ namespace GraficadorSeñales
                 default:
                     break;
             }
+        }
+
+        private void btnRealizarOperacion_Click(object sender, RoutedEventArgs e)
+        {
+            señalResultado = null;
+            switch (cbTipoOperaacion.SelectedIndex)
+            {
+                case 0: //Suma
+                    señalResultado =
+                        Señal.sumar(señal,segundaSeñal);
+                        
+                    break;
+                case 1: //Multiplicacion
+                    break;
+                default:
+                    break;
+
+            }
+
+            señalResultado.actualizarAmplitudMaxima();
+            plnGraficaResultado.Points.Clear();
+
+            lblAmplitudMaximaY_Resultado.Text = señalResultado.AmplitudMaxima.ToString("F");
+            lblAmplitudMazimaNegativaY_Resultado.Text = "-" + señalResultado.AmplitudMaxima.ToString("F");
+            if (señalResultado != null)
+            {
+                
+                foreach (Muestra muestra in señalResultado.Muestras)
+                {
+                    plnGraficaResultado.Points.Add(new Point((muestra.X - señalResultado.TiempoInicial) * scrContenedor_Resultado.Width,
+                    (muestra.Y / señalResultado.AmplitudMaxima) * (((scrContenedor_Resultado.Height / 2.0) - 30) * -1) + (scrContenedor_Resultado.Height / 2))
+                    );
+                }
+
+            }
+          
+         
+
+            //EJE X
+            plnEjexResultado.Points.Clear();
+            //Punto de Principio
+            plnEjexResultado.Points.Add(new Point(0, (scrContenedor_Resultado.Height / 2)));
+            //Punto del fin
+            plnEjexResultado.Points.Add(new Point((señalResultado.TiempoFinal - señalResultado.TiempoInicial) * scrContenedor_Resultado.Width, (scrContenedor_Resultado.Height / 2)));
+            //
+
+            //EJE Y
+            plnEjeyResultado.Points.Clear();
+            //Punto de Principio
+            plnEjeyResultado.Points.Add(new Point((0 - señalResultado.TiempoInicial) * scrContenedor_Resultado.Width, señalResultado.AmplitudMaxima * (((scrContenedor_Resultado.Height / 2.0) - 30) * -1) + (scrContenedor_Resultado.Height / 2)));
+            //Punto del fin
+            plnEjeyResultado.Points.Add(new Point((0 - señalResultado.TiempoInicial) * scrContenedor_Resultado.Width, - señalResultado.AmplitudMaxima * (((scrContenedor_Resultado.Height / 2.0) - 30) * -1) + (scrContenedor_Resultado.Height / 2)));
+            //
+
         }
     }
 }
