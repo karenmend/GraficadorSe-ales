@@ -66,6 +66,10 @@ namespace GraficadorSeñales
                          ((ConfiguracionSeñalExponencial)panelConfiguracion.Children[0]).txtAlpha.Text);
                     señal = new SeñalExponencial(alpha);
                     break;
+                case 3:
+                    señal = new SeñalRectangular();
+                    break;
+                    
                 default:
                     señal = null;
                     break;
@@ -93,6 +97,9 @@ namespace GraficadorSeñales
                     double alpha = double.Parse(
                          ((ConfiguracionSeñalExponencial)panelConfiguracion_SegundaSeñal.Children[0]).txtAlpha.Text);
                     segundaSeñal = new SeñalExponencial(alpha);
+                    break;
+                case 3://Rentagular
+                    señal = new SeñalRectangular();
                     break;
                 default:
                     segundaSeñal = null;
@@ -289,6 +296,8 @@ namespace GraficadorSeñales
                     case 2:
                         panelConfiguracion.Children.Add(new ConfiguracionSeñalExponencial());
                         break;
+                    case 3:
+                        break;
                     default:
                         break;
                 }
@@ -308,6 +317,8 @@ namespace GraficadorSeñales
                 case 2://Exponencial
                     panelConfiguracion_SegundaSeñal.Children.Add(new ConfiguracionSeñalExponencial());
                     break;
+                case 3: //Rectangular
+                    break;
                 default:
                     break;
             }
@@ -325,6 +336,9 @@ namespace GraficadorSeñales
                     break;
                 case 1: //Multiplicacion
                     señalResultado = Señal.multiplicar(señal, segundaSeñal);
+                    break;
+                case 2:
+                    señalResultado = Señal.convolucionar(señal, segundaSeñal);
                     break;
                 default:
                     break;

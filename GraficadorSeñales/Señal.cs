@@ -114,6 +114,37 @@ namespace GraficadorSeñales
             }
             return resultado;
         }
-        
+        public static Señal convolucionar(Señal señal1, Señal señal2)
+        {
+            SeñalPersonalizada resultado = new SeñalPersonalizada();
+
+            resultado.TiempoInicial = señal1.TiempoInicial + señal2.TiempoInicial;
+            resultado.TiempoFinal = señal1.TiempoFinal + señal2.TiempoFinal;
+            resultado.FrecuenciaMuestreo = señal1.FrecuenciaMuestreo;
+
+            double periodoMuestreo = 1 / resultado.FrecuenciaMuestreo;
+
+
+            double cantidadMuestrasResultado = resultado.FrecuenciaMuestreo * (resultado.TiempoFinal - resultado.TiempoInicial);
+            double instanteActual = resultado.TiempoInicial;
+            for (int n = 0; n < cantidadMuestrasResultado; n++)
+            {
+                double valorMuestra = 0;
+                for (int k = 0; k < señal2.Muestras.Count; k++)
+                {
+                    if ((n - k) >= 0 && (n - k) < señal2.Muestras.Count)
+                        valorMuestra += señal1.Muestras[k].Y * señal2.Muestras[n - k].Y;
+                }
+                valorMuestra /= resultado.FrecuenciaMuestreo;
+                Muestra muestra = new Muestra(instanteActual, valorMuestra);
+                resultado.Muestras.Add(muestra);
+                instanteActual += periodoMuestreo;
+            }
+
+
+
+            return resultado;
+        }
+
     }
 }

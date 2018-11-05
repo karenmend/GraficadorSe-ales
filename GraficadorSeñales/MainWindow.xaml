@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GraficadorSeñales"
         mc:Ignorable="d"
         Title="MainWindow" Height="785.221" Width="1034">
-    <Grid Height="776" VerticalAlignment="Top">
+    <Grid Height="750" VerticalAlignment="Top">
         <TextBlock HorizontalAlignment="Left" Margin="870,13,0,0" TextWrapping="Wrap" Text="Tiempo inicial:" VerticalAlignment="Top"/>
         <TextBox x:Name="txtTiempoInicial" HorizontalAlignment="Left" Height="23" Margin="870,34,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="870,68,0,0" TextWrapping="Wrap"  Text="Tiempo final:" VerticalAlignment="Top"/>
@@ -31,6 +31,7 @@
             <ComboBoxItem>Señal Senoidal</ComboBoxItem>
             <ComboBoxItem>Señal Rampa</ComboBoxItem>
             <ComboBoxItem>Señal Exponencial</ComboBoxItem>
+            <ComboBoxItem>Señal Rectangular</ComboBoxItem>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="252,14,0,0" TextWrapping="Wrap" Text="Escala de Amplitud:" VerticalAlignment="Top"/>
         <TextBox x:Name="txtfactorEscalaAmplitud" HorizontalAlignment="Left" Height="23" Margin="252,35,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="103" IsEnabled="{Binding ElementName=checkboxEscalaAmplitud, Path=IsChecked}"/>
@@ -47,6 +48,7 @@
             <ComboBoxItem Content="Señal Senoidal"/>
             <ComboBoxItem Content="Señal Rampa"/>
             <ComboBoxItem Content="Señal Exponencial"/>
+            <ComboBoxItem>Señal Rectangular</ComboBoxItem>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="686,14,0,0" TextWrapping="Wrap" Text="Escala de Amplitud:" VerticalAlignment="Top"/>
         <TextBox x:Name="txtfactorEscalaAmplitud_SegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="686,35,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="102" IsEnabled="{Binding IsChecked, ElementName=checkboxEscalaAmplitud_SegundaSeñal}"/>
@@ -71,6 +73,7 @@
         <ComboBox x:Name="cbTipoOperaacion" HorizontalAlignment="Left" Margin="871,234,0,0" VerticalAlignment="Top" Width="133">
             <ComboBoxItem>Suma</ComboBoxItem>
             <ComboBoxItem>Multiplicacion</ComboBoxItem>
+            <ComboBoxItem>Convolucionar</ComboBoxItem>
         </ComboBox>
         <Button x:Name="btnRealizarOperacion" Content="Realizar Operacion" HorizontalAlignment="Left" Margin="871,266,0,0" VerticalAlignment="Top" Width="133" Click="btnRealizarOperacion_Click"/>
 
